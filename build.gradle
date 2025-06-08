@@ -1,0 +1,79 @@
+plugins {
+    id 'java-library'
+    id 'io.qameta.allure' version '2.11.2'
+}
+
+repositories {
+    mavenCentral()
+}
+
+def aspectjWeaverVersion = "1.9.24",
+    selenideVersion = "7.9.3",
+    restAssuredVersion = "5.5.5",
+    allureVersion = '2.29.1',
+    junitVersion = "5.13.0",
+    slf4jVersion = "2.0.17",
+    ownerVersion = "1.0.12",
+    appiumVersion = "9.4.0"
+
+
+allure {
+    report {
+        version = allureVersion
+    }
+    adapter {
+        aspectjWeaver = true
+        frameworks {
+            junit5 {
+                adapterVersion = allureVersion
+            }
+        }
+    }
+}
+
+dependencies {
+    testImplementation(
+            "org.aspectj:aspectjweaver:$aspectjWeaverVersion",
+            "com.codeborne:selenide:$selenideVersion",
+            "io.qameta.allure:allure-selenide:$allureVersion",
+            "io.appium:java-client:$appiumVersion",
+            "io.rest-assured:rest-assured:$restAssuredVersion",
+            "org.junit.jupiter:junit-jupiter:$junitVersion",
+            "org.slf4j:slf4j-simple:$slf4jVersion",
+            "org.aeonbits.owner:owner:$ownerVersion")
+    testRuntimeOnly(
+            "org.junit.platform:junit-platform-launcher")
+}
+
+tasks.withType(Test).configureEach {
+    useJUnitPlatform()
+
+    testLogging {
+        events "started", "skipped", "failed", "standard_error", "standard_out"
+        exceptionFormat "short"
+    }
+}
+
+tasks.register('emulation', Test) {
+    useJUnitPlatform {
+        includeTags 'emulation'
+    }
+    systemProperty 'platform', 'Android'
+    systemProperty 'deviceHost', 'local'
+}
+
+tasks.register('android_browserstack', Test) {
+    useJUnitPlatform {
+        includeTags 'android_browserstack'
+    }
+    systemProperty 'platform', 'android'
+    systemProperty 'deviceHost', 'browserstack'
+}
+
+tasks.register('ios_browserstack', Test) {
+    useJUnitPlatform {
+        includeTags 'ios_browserstack'
+    }
+    systemProperty 'platform', 'ios'
+    systemProperty 'deviceHost', 'browserstack'
+}
