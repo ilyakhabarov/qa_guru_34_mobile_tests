@@ -2,12 +2,12 @@ package drivers;
 
 import com.codeborne.selenide.WebDriverProvider;
 import config.BrowserstackConfig;
-import groovyjarjarantlr4.v4.runtime.misc.NotNull;
+import io.appium.java_client.android.AndroidDriver;
+import io.appium.java_client.android.options.UiAutomator2Options;
 import org.aeonbits.owner.ConfigFactory;
+import org.jspecify.annotations.NonNull;
 import org.openqa.selenium.Capabilities;
-import org.openqa.selenium.MutableCapabilities;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.remote.RemoteWebDriver;
 
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -16,32 +16,28 @@ public class BrowserstackDriver implements WebDriverProvider {
 
     private static final BrowserstackConfig config = ConfigFactory.create(BrowserstackConfig.class);
 
-    @NotNull
+    @NonNull
     @Override
-    public WebDriver createDriver(@NotNull Capabilities capabilities) {
-        MutableCapabilities caps = new MutableCapabilities();
+    public WebDriver createDriver(@NonNull Capabilities capabilities) {
+        UiAutomator2Options options = new UiAutomator2Options();
 
-        caps.setCapability("browserstack.user", config.user());
-        caps.setCapability("browserstack.key", config.key());
+        // Обязательные параметры для BrowserStack
+        options.setCapability("browserstack.user", config.user());
+        options.setCapability("browserstack.key", config.key());
+        options.setCapability("app", config.app());
 
-        String platform = System.getProperty("platform");
+        // Параметры для Android
+        options.setCapability("deviceName", config.androidDevice());
+        options.setCapability("platformVersion", config.androidOsVersion());
+        options.setCapability("platformName", "android");
 
-        if (platform.equalsIgnoreCase("ios")) {
-            caps.setCapability("device", config.iosDevice());
-            caps.setCapability("os_version", config.iosOsVersion());
-            caps.setCapability("app", config.app());
-        } else {
-            caps.setCapability("device", config.androidDevice());
-            caps.setCapability("os_version", config.androidOsVersion());
-            caps.setCapability("app", config.app());
-        }
-
-        caps.setCapability("project", "First Java Project");
-        caps.setCapability("build", "browserstack-build-1");
-        caps.setCapability("name", "first_test");
+        // Доп. параметры (необязательно)
+        options.setCapability("project", "First Java Project");
+        options.setCapability("build", "browserstack-build-1");
+        options.setCapability("name", "first_test");
 
         try {
-            return new RemoteWebDriver(new URL(config.url()), caps);
+            return new AndroidDriver(new URL(config.url()), options);
         } catch (MalformedURLException e) {
             throw new RuntimeException("Invalid Browserstack URL", e);
         }

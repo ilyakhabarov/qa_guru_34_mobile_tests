@@ -2,10 +2,10 @@ package drivers;
 
 import com.codeborne.selenide.WebDriverProvider;
 import config.EmulationConfig;
-import groovyjarjarantlr4.v4.runtime.misc.NotNull;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.options.UiAutomator2Options;
 import org.aeonbits.owner.ConfigFactory;
+import org.jspecify.annotations.NonNull;
 import org.openqa.selenium.Capabilities;
 import org.openqa.selenium.WebDriver;
 
@@ -17,9 +17,9 @@ public class EmulationDriver implements WebDriverProvider {
 
     private static final EmulationConfig config = ConfigFactory.create(EmulationConfig.class);
 
-    @NotNull
+    @NonNull
     @Override
-    public WebDriver createDriver(@NotNull Capabilities capabilities) {
+    public WebDriver createDriver(@NonNull Capabilities capabilities) {
         UiAutomator2Options caps = new UiAutomator2Options();
         caps.merge(capabilities);
 
