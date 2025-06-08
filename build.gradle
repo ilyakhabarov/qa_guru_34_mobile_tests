@@ -8,13 +8,13 @@ repositories {
 }
 
 def aspectjWeaverVersion = "1.9.24",
-    selenideVersion = "7.9.3",
+    selenideVersion = "6.13.0",
     restAssuredVersion = "5.5.5",
-    allureVersion = '2.29.1',
+    allureVersion = "2.29.1",
     junitVersion = "5.13.0",
     slf4jVersion = "2.0.17",
     ownerVersion = "1.0.12",
-    appiumVersion = "9.4.0"
+    appiumVersion = "8.3.0"
 
 
 allure {
