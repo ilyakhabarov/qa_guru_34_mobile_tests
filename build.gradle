@@ -49,31 +49,19 @@ tasks.withType(Test).configureEach {
     useJUnitPlatform()
 
     testLogging {
-        events "started", "skipped", "failed", "standard_error", "standard_out"
-        exceptionFormat "short"
+        lifecycle {
+            events "started", "skipped", "failed", "standard_error", "standard_out"
+            exceptionFormat "short"
+        }
     }
 }
 
-tasks.register('emulation', Test) {
-    useJUnitPlatform {
-        includeTags 'emulation'
-    }
-    systemProperty 'platform', 'Android'
-    systemProperty 'deviceHost', 'local'
-}
-
-tasks.register('android_browserstack', Test) {
-    useJUnitPlatform {
-        includeTags 'android_browserstack'
-    }
+tasks.register('androidTest', Test) {
+    useJUnitPlatform()
     systemProperty 'platform', 'android'
-    systemProperty 'deviceHost', 'browserstack'
 }
 
-tasks.register('ios_browserstack', Test) {
-    useJUnitPlatform {
-        includeTags 'ios_browserstack'
-    }
+tasks.register('iosTest', Test) {
+    useJUnitPlatform()
     systemProperty 'platform', 'ios'
-    systemProperty 'deviceHost', 'browserstack'
 }
