@@ -10,7 +10,7 @@ repositories {
 def aspectjWeaverVersion = "1.9.24",
     selenideVersion = "6.13.0",
     restAssuredVersion = "5.5.5",
-    allureVersion = "2.29.1",
+    allureVersion = "2.21.0",
     junitVersion = "5.13.0",
     slf4jVersion = "2.0.17",
     ownerVersion = "1.0.12",
@@ -67,13 +67,5 @@ tasks.register('android_browserstack_test', Test) {
         includeTags 'android_browserstack'
     }
     systemProperty 'platform', 'android'
-    systemProperty 'deviceHost', 'browserstack'
-}
-
-tasks.register('ios_browserstack_test', Test) {
-    useJUnitPlatform {
-        includeTags 'ios_browserstack'
-    }
-    systemProperty 'platform', 'ios'
     systemProperty 'deviceHost', 'browserstack'
 }
