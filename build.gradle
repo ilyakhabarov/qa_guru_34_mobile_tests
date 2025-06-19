@@ -58,8 +58,6 @@ tasks.register('android_local_test', Test) {
     useJUnitPlatform {
         includeTags 'android_local'
     }
-    systemProperty 'platform', 'android'
-    systemProperty 'deviceHost', 'local'
 }
 
 tasks.register('android_browserstack_test', Test) {

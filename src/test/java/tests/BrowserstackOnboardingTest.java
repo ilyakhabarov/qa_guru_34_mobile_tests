@@ -12,11 +12,6 @@ import static io.qameta.allure.Allure.step;
 @Tag("android_browserstack")
 public class BrowserstackOnboardingTest extends TestBase {
 
-    @BeforeAll
-    static void setup() {
-        System.setProperty("app", "bs://1bb42beb49de29f59bd2b394b41a732e932e7427");
-    }
-
     @Test
     void completeOnboardingScreens() {
         step("Проверка первой страницы", () -> {

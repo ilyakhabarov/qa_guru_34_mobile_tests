@@ -12,20 +12,14 @@ import static io.qameta.allure.Allure.step;
 @Tag("android_browserstack")
 public class AndroidArticleTest extends TestBase {
 
-    @BeforeAll
-    static void setup() {
-        System.setProperty("platform", "android");
-        System.setProperty("app", "bs://sample.app");
-    }
-
     @Test
     void openSelenideTest() {
-        step("Type search", () -> {
+        step("Вводим в поиске", () -> {
             $(accessibilityId("Search Wikipedia")).click();
             $(id("org.wikipedia.alpha:id/search_src_text")).sendKeys("Selenide");
         });
 
-        step("Verify content found", () ->
+        step("Проверяем результаты поиска", () ->
                 $$(id("org.wikipedia.alpha:id/page_list_item_title"))
                         .shouldHave(sizeGreaterThan(0)));
 
