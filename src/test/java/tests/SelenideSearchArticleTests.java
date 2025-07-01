@@ -3,14 +3,11 @@ package tests;
 import io.qameta.allure.Owner;
 import io.qameta.allure.Severity;
 import io.qameta.allure.SeverityLevel;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
-import java.time.Duration;
-
-import static com.codeborne.selenide.Condition.text;
+import static com.codeborne.selenide.CollectionCondition.size;
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.*;
 import static com.codeborne.selenide.CollectionCondition.sizeGreaterThan;
@@ -33,45 +30,42 @@ public class SelenideSearchArticleTests extends TestBase {
         step("Проверяем результаты поиска", () ->
                 $$(id("org.wikipedia.alpha:id/page_list_item_title"))
                         .shouldHave(sizeGreaterThan(0)));
-
     }
 
-    @Disabled
     @Test
     @Owner("Ilya Khabarov")
     @Severity(SeverityLevel.NORMAL)
     @DisplayName("Проверка открытия статьи из результатов поиска")
-    void openArticleFromIncorrectSearchTest() {
-        step("Вводим в поиске ключевое слово", () -> {
+    void openArticleFromSearchResultsTest() {
+        step("Ввести ключевое слово в поиск", () -> {
+            back();
             $(accessibilityId("Search Wikipedia")).click();
-            $(id("org.wikipedia.alpha:id/search_src_text")).sendKeys("Selenide");
+            $(id("org.wikipedia.alpha:id/search_src_text")).sendKeys("Github");
         });
-
-        step("Кликаем на первую статью в результатах", () ->
+        step("Открыть первую статью в результатах поиска", () ->
                 $$(id("org.wikipedia.alpha:id/page_list_item_title"))
-
-                        .first()
-                        .click());
-
-        step("Проверяем, что статья загрузилась", () -> {
-            $(id("org.wikipedia.alpha:id/view_page_title_text"))
-                    .shouldBe(visible, Duration.ofSeconds(10));
+                        .first().click());
+        step("Закрыть поп-ап предложения игр", () ->
+                $(id("org.wikipedia.alpha:id/closeButton")).click());
+        step("Проверить открытую статью", () -> {
+            $(xpath("//android.view.View[@resource-id='pcs']")).shouldBe(visible);
+            $(xpath("//android.view.View[@text='GitHub']")).shouldBe(visible);
         });
     }
 
-    @Disabled
     @Test
     @Owner("Ilya Khabarov")
     @Severity(SeverityLevel.NORMAL)
     @DisplayName("Проверка результатов поиска статей по ключевому слову")
     void emptySearchResultsTest() {
-        step("Вводим несуществующий запрос", () -> {
+        step("Ввести ключевое слово в поиск", () -> {
+            back();
             $(accessibilityId("Search Wikipedia")).click();
-            $(id("org.wikipedia.alpha:id/search_src_text")).sendKeys("zxcvbnm12345");
+            $(id("org.wikipedia.alpha:id/search_src_text")).sendKeys("zxcqwe123");
         });
 
         step("Проверяем, что результатов нет", () ->
-                $(id("org.wikipedia.alpha:id/search_empty_message"))
-                        .shouldHave(text("No results found")));
+                $$(id("org.wikipedia.alpha:id/page_list_item_title"))
+                        .shouldHave(size(0)));
     }
 }

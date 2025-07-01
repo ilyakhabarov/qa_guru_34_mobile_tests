@@ -15,7 +15,7 @@ import static io.qameta.allure.Allure.step;
 @Tag("android_browserstack")
 @Owner("Ilya Khabarov")
 @Severity(SeverityLevel.NORMAL)
-public class WikiOnboardingTest extends TestBase {
+public class WikiOnboardingLocalTest extends TestBase {
 
     @Test
     void completeOnboardingScreens() {

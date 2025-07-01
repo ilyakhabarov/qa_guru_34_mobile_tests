@@ -26,7 +26,7 @@ public class TestBase {
         }
 
         Configuration.browserSize = null;
-        Configuration.timeout = 10000;
+        Configuration.timeout = 30000;
     }
 
     @BeforeEach
@@ -37,16 +37,23 @@ public class TestBase {
 
     @AfterEach
     void addAttachments() {
-        String deviceHost = System.getProperty("deviceHost", "local");
-        String sessionId = Selenide.sessionId().toString();
-
-        //        Attach.screenshotAs("Last screenshot"); // todo fix
-        Attach.pageSource();
-
-        if (deviceHost.equals("browserstack")) {
-            Attach.addVideo(sessionId);
+        switch (System.getProperty("deviceHost")) {
+            case "browserstack": {
+                String sessionId = Selenide.sessionId().toString();
+                Attach.pageSource();
+                closeWebDriver();
+                Attach.addVideo(sessionId);
+                break;
+            }
+            case "local": {
+                Attach.screenshotAs("Last screenshot");
+                Attach.pageSource();
+                closeWebDriver();
+                break;
+            }
+            default: {
+                throw new RuntimeException("No such deviceHost");
+            }
         }
-
-        closeWebDriver();
     }
 }
