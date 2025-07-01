@@ -22,16 +22,16 @@
 <a href="https://www.android.com/"><img src="media/icons/android.svg" width="50" height="50"  alt="Android"/></a>  
 <a href="https://developer.android.com/studio"><img src="media/icons/androidstudio.svg" width="50" height="50"  alt="Android Studio"/></a>  
 <a href="https://github.com/"><img src="media/icons/github-badge-svgrepo-com.svg" width="50" height="50"  alt="Github"/></a>  
-<a href="https://junit.org/junit5/"><img src="media/icons/junit5.svg" width="50" height="50"  alt="JUnit 5"/></a>  
+<a href="https://junit.org/junit5/"><img src="media/icons/Junit5.svg" width="50" height="50"  alt="JUnit 5"/></a>  
 <a href="https://gradle.org/"><img src="media/icons/gradle-svgrepo-com.svg" width="50" height="50"  alt="Gradle"/></a>  
-<a href="https://selenide.org/"><img src="media/icons/selenide.svg" width="50" height="50"  alt="Selenide"/></a>  
+<a href="https://selenide.org/"><img src="media/icons/Selenide.svg" width="50" height="50"  alt="Selenide"/></a>  
 <a href="https://www.browserstack.com/"><img src="media/icons/browserstack.svg" width="50" height="50"  alt="Browserstack"/></a> 
 <a href="https://appium.io/"><img src="media/icons/appium.png" width="50" height="50"  alt="Appium"/></a> 
 <a href="https://rest-assured.io/"><img src="media/icons/rest-assured.png" width="50" height="50"  alt="REST-assured"/></a> 
-<a href="https://github.com/allure-framework/allure2"><img src="media/icons/allure.svg" width="50" height="50"  alt="Allure"/></a>  
+<a href="https://github.com/allure-framework/allure2"><img src="media/icons/Allure.svg" width="50" height="50"  alt="Allure"/></a>  
 <a href="https://qameta.io/"><img src="media/icons/Allure_TestOps.svg" width="50" height="50"  alt="TestOps"/></a> 
-<a href="https://www.jenkins.io/"><img src="media/icons/jenkins.svg" width="50" height="50"  alt="Jenkins"/></a>  
-<a href="https://telegram.org/"><img src="media/icons/telegram.svg" width="50" height="50"  alt="Telegram"/></a>
+<a href="https://www.jenkins.io/"><img src="media/icons/Jenkins.svg" width="50" height="50"  alt="Jenkins"/></a>  
+<a href="https://telegram.org/"><img src="media/icons/Telegram.svg" width="50" height="50"  alt="Telegram"/></a>
 </p>
 
 Автотесты для мобильного приложения на `Android` разработаны на языке программирования `Java` с использованием фреймворков `Selenide` и `Appium`; `UIAutomator2` используется как Android драйвер.
