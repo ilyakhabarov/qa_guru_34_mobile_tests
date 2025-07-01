@@ -56,7 +56,7 @@ public class SelenideSearchArticleTests extends TestBase {
     @Test
     @Owner("Ilya Khabarov")
     @Severity(SeverityLevel.NORMAL)
-    @DisplayName("Проверка результатов поиска статей по ключевому слову")
+    @DisplayName("Проверка пустых результатов поиска")
     void emptySearchResultsTest() {
         step("Ввести ключевое слово в поиск", () -> {
             back();

@@ -12,7 +12,6 @@ import static com.codeborne.selenide.Selenide.*;
 import static io.qameta.allure.Allure.step;
 
 @Tag("android_local")
-@Tag("android_browserstack")
 @Owner("Ilya Khabarov")
 @Severity(SeverityLevel.NORMAL)
 public class WikiOnboardingLocalTest extends TestBase {
