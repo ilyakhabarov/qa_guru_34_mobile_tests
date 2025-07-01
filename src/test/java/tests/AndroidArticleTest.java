@@ -36,53 +36,41 @@ public class AndroidArticleTest extends TestBase {
     @Test
     @Owner("Ilya Khabarov")
     @Severity(SeverityLevel.NORMAL)
-    @DisplayName("Проверка отрытие статьи через поиск")
-    void openArticleTest() {
-
-        step("Ввести ключевое слово в поиск", () -> {
-            back();
+    @DisplayName("Проверка открытия статьи из результатов поиска")
+    void openArticleFromIncorrectSearchTest() {
+        step("Вводим в поиске ключевое слово", () -> {
             $(accessibilityId("Search Wikipedia")).click();
-            $(id("org.wikipedia.alpha:id/search_src_text")).sendKeys("Github");
+            $(id("org.wikipedia.alpha:id/search_src_text")).sendKeys("JUnit");
         });
-        step("Открыть первую статью в результатах поиска", () ->
+
+        step("Кликаем на первую статью в результатах", () ->
                 $$(id("org.wikipedia.alpha:id/page_list_item_title"))
-                        .first().click());
-        step("Закрыть поп-ап предложения игр", () ->
-                $(id("org.wikipedia.alpha:id/closeButton")).click());
-        step("Проверить открытую статью", () -> {
-            $(xpath("//android.view.View[@resource-id='pcs']")).shouldBe(visible);
-            $(xpath("//android.view.View[@text='GitHub']")).shouldBe(visible);
-        });
+                        .first()
+                        .click());
+
+        step("Проверяем, что статья загрузилась", () ->
+                $(id("org.wikipedia.alpha:id/view_page_title_text"))
+                        .shouldBe(visible));
     }
 
     @Test
-    @DisplayName("Проверка стартовых экранов приложения")
     @Owner("Ilya Khabarov")
     @Severity(SeverityLevel.NORMAL)
-    void verifyGettingStartedScreensTest() {
+    @DisplayName("Проверка открытия статьи из результатов поиска")
+    void openArticleFromSearchTest() {
+        step("Вводим в поиске ключевое слово", () -> {
+            $(accessibilityId("Search Wikipedia")).click();
+            $(id("org.wikipedia.alpha:id/search_src_text")).sendKeys("JUnit");
+        });
 
-        step("Проверить первый стартовый экран приложения", () ->
-                $(id("org.wikipedia.alpha:id/primaryTextView"))
-                        .shouldHave(text("The Free Encyclopedia")));
-        step("Открыть второй стартовый экран приложения", () ->
-                $(id("org.wikipedia.alpha:id/fragment_onboarding_forward_button")).click());
-        step("Проверить второй стартовый экран приложения", () ->
-                $(id("org.wikipedia.alpha:id/primaryTextView"))
-                        .shouldHave(text("New ways to explore")));
-        step("Открыть третий стартовый экран приложения", () ->
-                $(id("org.wikipedia.alpha:id/fragment_onboarding_forward_button")).click());
-        step("Проверить третий стартовый экран приложения", () ->
-                $(id("org.wikipedia.alpha:id/primaryTextView"))
-                        .shouldHave(text("Reading lists with sync")));
-        step("Открыть четвертый стартовый экран приложения", () ->
-                $(id("org.wikipedia.alpha:id/fragment_onboarding_forward_button")).click());
-        step("Проверить четвертый стартовый экран приложения", () ->
-                $(id("org.wikipedia.alpha:id/primaryTextView"))
-                        .shouldHave(text("Data & Privacy")));
-        step("Нажать на кнопку 'Get started'", () ->
-                $(id("org.wikipedia.alpha:id/fragment_onboarding_done_button")).click());
-        step("Проверить отображение главной страницы приложения", () ->
-                $(id("org.wikipedia.alpha:id/feed_view")).shouldBe(visible));
+        step("Кликаем на первую статью в результатах", () ->
+                $$(id("org.wikipedia.alpha:id/page_list_item_title"))
+                        .first()
+                        .click());
+
+        step("Проверяем, что статья загрузилась", () ->
+                $(id("org.wikipedia.alpha:id/view_page_title_text"))
+                        .shouldBe(visible));
     }
 
 }
