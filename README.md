@@ -73,7 +73,7 @@ gradle android_browserstack_test
 Для запуска сборки необходимо перейти в раздел <code>Buld with parameters</code>, выбрать нужные параметры запуска
 автотестов и нажать кнопку <code>Build</code>.
 <p align="center">
-<img title="Jenkins Build" src="media/report_media/allure1_report_example.png">
+<img title="Jenkins Build" src="media/report_media/allure_report_example.png">
 </p>
 После выполнения сборки, в блоке <code>Builds</code> напротив номера сборки появятся значки <code>Allure Report</code> и <code>Allure TestOps</code>, при клике на которые откроется страница со сформированным html-отчетом и тестовой документацией соответственно.
 
@@ -87,7 +87,7 @@ gradle android_browserstack_test
 * Видео выполнения автотеста.
 
 <p align="center">
-<img title="Allure Overview" src="media/report_media/allur1e_tests_result_example.png">
+<img title="Allure Overview" src="media/report_media/allure_tests_result_example.png">
 </p>
 
 ## <img width="4%" style="vertical-align:middle" title="Telegram" src="media/icons/Telegram.svg"> Уведомления в Telegram с использованием бота
@@ -96,7 +96,7 @@ gradle android_browserstack_test
 сообщение с отчетом о прогоне тестов.
 
 <p align="center">
-<img width="70%" title="Telegram Notifications" src="media/report_media/telegram_report1.png">
+<img width="70%" title="Telegram Notifications" src="media/report_media/telegram_report.png">
 </p>
 
 ## <img width="4%" style="vertical-align:middle" title="Selenoid" src="media/icons/browserstack.svg"> Видео примера запуска тестов в Browserstack
@@ -104,8 +104,6 @@ gradle android_browserstack_test
 В отчетах Allure для каждого теста прикреплено и видео прохождения теста
 
 <p align="center">
-<img title="Selenoid Video" src="images/video/video.gif" width="350"  alt="video">  
+<img title="Selenoid Video" src="media/report_media/video.gif" width="350"  alt="video">  
 </p>
-<p align="center">
-<img title="Selenoid Video" src="images/video/video1.gif" width="350"  alt="video"> 
-</p>
+
