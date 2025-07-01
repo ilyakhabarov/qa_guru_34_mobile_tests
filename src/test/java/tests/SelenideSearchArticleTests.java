@@ -23,6 +23,7 @@ public class SelenideSearchArticleTests extends TestBase {
     @DisplayName("Проверка результатов поиска статей по ключевому слову")
     void openSelenideTest() {
         step("Вводим в поиске", () -> {
+            back();
             $(accessibilityId("Search Wikipedia")).click();
             $(id("org.wikipedia.alpha:id/search_src_text")).sendKeys("Selenide");
         });
