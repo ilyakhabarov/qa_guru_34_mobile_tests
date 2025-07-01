@@ -101,7 +101,7 @@ gradle android_browserstack_test
 
 ## <img width="4%" style="vertical-align:middle" title="Selenoid" src="media/icons/browserstack.svg"> Видео примера запуска тестов в Browserstack
 
-В отчетах Allure для каждого теста прикреплено и видео прохождения теста
+В отчетах Allure для каждого теста прикреплено видео прохождения теста
 
 <p align="center">
 <img title="Selenoid Video" src="media/report_media/video.gif" width="350"  alt="video">  
